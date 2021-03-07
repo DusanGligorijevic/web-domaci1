@@ -7,7 +7,7 @@ public class Asistent implements Runnable{
     Random r = new Random();
     @Override
     public void run() {
-            System.out.println("Asistent je spreman.");
+           // System.out.println("Asistent je spreman.");
         while(flag){
             flag=false;
             for(Student s: Main.listacekanja){
@@ -21,7 +21,7 @@ public class Asistent implements Runnable{
                         s.ocena = r.nextInt(5)+1;
                         Main.finished++;
                         Main.ukupnaOcena+=s.ocena;
-                        System.out.println(s.name + " je zavrsio i dobio ocenu " + s.ocena+ s.braniKod);
+                        System.out.println(s.name + " je zavrsio i dobio ocenu " + s.ocena+ " kod asistenta.");
                         s.branio=true;
                         flag=true;
                     }
@@ -29,6 +29,5 @@ public class Asistent implements Runnable{
 
             }
         }
-        System.out.println("Asistent je zavrsio sa odbranom.");
     }
 }

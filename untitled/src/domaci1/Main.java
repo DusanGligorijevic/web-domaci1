@@ -37,22 +37,34 @@ public class Main extends Thread{
 
         Random r = new Random();
 
+
+        System.out.println("Asistent je spreman.");
+        System.out.println("Profesor je spreman.");
         System.out.println("odbrana pocinje!");
         ScheduledExecutorService executorServiceScheduled = Executors.newScheduledThreadPool(Main.numberOfStudents);
         for (int i = 0; i < Main.numberOfStudents; i++) {
-            int arrivalTime = r.nextInt(5000);
+            int arrivalTime = r.nextInt(500);
             executorServiceScheduled.schedule(new Student(), arrivalTime, TimeUnit.MILLISECONDS);
         }
-        Thread.currentThread().sleep(5000);
-        asistent.start();
+        Thread.currentThread().sleep(500);
         profesor.start();
+        asistent.start();
+
+        Thread.currentThread().sleep(4500);
         executorServiceScheduled.shutdownNow();
-        asistent.join();
-        profesor.join();
+        asistent.interrupt();
+
+
+
         System.out.println("Odbrana se završila.");
         System.out.println(ukupnaOcena);
         System.out.println(finished);
-        System.out.println("Prosek ocena na odbrani je: "+ ukupnaOcena/finished*1.0);
+        System.out.println("Prosek ocena na odbrani je: "+ ukupnaOcena*1.0/finished);
+        for(Student s : listacekanja){
+            if(s.braniKod){
+                System.out.println(s.name);
+            }
+        }
 
     }
 }
