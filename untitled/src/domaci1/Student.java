@@ -1,32 +1,37 @@
 package domaci1;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-public class Student implements Runnable{
+public class Student extends Thread implements Runnable{
     private static int redniBroj=0;
-    private boolean branio;
-    private int ocena;
+    public String name = "Student";
+    protected  boolean branio=false;
+    public static int ocena;
     private Random r = new Random();
+    public  boolean braniKod;
+
+
+
+    public Student (String name, boolean branio, int ocena, boolean braniKod){
+        this.name=name;
+        this.branio = branio;
+        this.ocena= ocena;
+        this.braniKod=braniKod;
+    }
+    public Student(){
+
+    }
     @Override
     public void run() {
-        System.out.println("Student "+ ++redniBroj + " je došao.");
-        boolean braniKod = r.nextBoolean(); // true-prof, false-asistent
+        braniKod = r.nextBoolean(); // true-prof, false-asistent
+        Student student = new Student(name + " " + ++redniBroj, false, 0, braniKod);
+        System.out.println(name +" " + redniBroj + " je došao.");
         if(!braniKod){
-            System.out.println("Student "+ redniBroj + " brani kod asistenta.");
-
-
-            /*
-            try {
-                Thread.sleep(r.nextInt(500)+500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-*/
+            System.out.println(name +" " + redniBroj + " brani kod asistenta.");
         }else{
-            System.out.println("Student "+ redniBroj + " brani kod profesora.");
+            System.out.println(name +" " + redniBroj + " brani kod profesora.");
         }
-
-
-
+        Main.listacekanja.add(student);
     }
 }
