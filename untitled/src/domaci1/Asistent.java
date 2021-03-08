@@ -5,6 +5,7 @@ import java.util.Random;
 public class Asistent implements Runnable{
     boolean flag=true;
     Random r = new Random();
+
     @Override
     public void run() {
         /**

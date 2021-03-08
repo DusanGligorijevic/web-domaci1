@@ -1,8 +1,5 @@
 package domaci1;
 
-import javafx.util.converter.LongStringConverter;
-
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -88,10 +85,8 @@ public class Main extends Thread{
                         ", Prof:<"+asistent.getName()+">"+
                         ", TTC:<"+homeworkTime+">:< "+ pocetakOdbrane +">"+
                         ", Score:<"+ s.ocena+">");
-
             }
         }
-
         for(Student s : listacekanja){
             if(!s.branio){
                 System.out.println(s.getName()+" nije stigao da odbrani.");

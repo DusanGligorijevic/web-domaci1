@@ -12,19 +12,15 @@ public class Student extends Thread implements Runnable{
     long startTime;
     long finishedTime;
 
-
-
     public Student(String name, boolean branio, int ocena, boolean braniKod, long startTime) {
         this.name = name;
         this.branio = branio;
         this.ocena = ocena;
         this.braniKod = braniKod;
         this.startTime=startTime;
-
     }
     public Student() {
     }
-
     @Override
     public void run() {
         braniKod = r.nextBoolean(); // true-prof, false-asistent
@@ -40,12 +36,10 @@ public class Student extends Thread implements Runnable{
             try {
                 System.out.println(name + " brani kod profesora.");
                 System.out.println(name +  " ceka.");
-
                 /**
                  * Ovde se nalazi barijera zbog toga sto  kod u klasi profesor nije u run metodi.
                  * Takodje, iz istog razloga se ovde nalazi i deo gde student brani rad svojim tempom (Thread.sleep)
                  */
-
                 Profesor.cyclicBarrier.await();
                 int vremeOdbrane = r.nextInt(501)+500;
                 Main.profesor.sleep(vremeOdbrane);
@@ -54,5 +48,4 @@ public class Student extends Thread implements Runnable{
             }
         }
     }
-
 }
